@@ -1,0 +1,72 @@
+<div class="container-xl px-4" style="margin-top:90px; width:60%;">
+    {{!-- <nav class=" nav nav-borders">
+        <a class="nav-link active ms-0" href="/profile" style="font-size: large; font-weight: 600;">Profile</a>
+        <a class="nav-link" href="/address" style="font-size: large; font-weight: 600;">Address</a>
+        <a class="nav-link" href="/password" style="font-size: large; font-weight: 600;">Password</a>
+    </nav> --}}
+    <div class="btn-group ms-5" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+        <label class="btn btn-outline-primary" for="btnradio1">Profile</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+        <label class="btn btn-outline-primary" for="btnradio2"><a href="/address" style="text-decoration: none;">
+                Address</a></label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+        <label class="btn btn-outline-primary" for="btnradio3"><a href="/passwords" style="text-decoration: none;">
+                Passwords</a></label>
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
+        <label class="btn btn-outline-primary" for="btnradio3"><a href="/wallet" style="text-decoration: none;">
+                Wallet</a></label>
+
+    </div>
+    {{!--
+    <hr class="mt-0 mb-4"> --}}
+    <div class="card mb-4 my-3">
+        <div class="card-header"><strong>Account Details</strong></div>
+        <div class="card-body">
+            <form action="/profile" method="post">
+                <!-- Form Group (username)-->
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <!-- Form Group (first name)-->
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="firstname"><strong>First name</strong></label>
+                        <input class="form-control" id="firstname" name="fname" type="text"
+                            placeholder="Enter your first name" value="{{user.fname}}">
+                    </div>
+                    <!-- Form Group (last name)-->
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="lastname"><strong>Last name</strong></label>
+                        <input class="form-control" id="lastname" name="lname" type="text"
+                            placeholder="Enter your last name" value="{{user.lname}}">
+                    </div>
+                </div>
+
+
+                <!-- Form Row        -->
+
+                <!-- Form Group (email address)-->
+                <div class="mb-3">
+                    <label class="small mb-1" for="email"><strong>Email address</strong></label>
+                    <input class="form-control" id="email" name="email" type="email"
+                        placeholder="Enter your email address" value="{{user.email}}">
+                </div>
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <!-- Form Group (phone number)-->
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="mobile"><strong>Mobile Number</strong> </label>
+                        <input class="form-control" id="mobile" name="phonenumber" type="tel"
+                            placeholder="Enter your phone number" value="{{user.phonenumber}}">
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" id="id" name="_id" type="tel" value="{{user._id}}" hidden>
+                    </div>
+                </div>
+                <!-- Save changes button-->
+                <button class="btn btn-primary" type="submit">Save changes</button>
+            </form>
+        </div>
+    </div>
+</div>

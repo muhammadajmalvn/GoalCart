@@ -1,0 +1,42 @@
+<div id="main">
+    <div class="container">
+        <nav class="navbar navbar-light bg-white p-3 ms-2">
+            <div class="container-fluid" style="margin-left: 30%;">
+                <a class="navbar-brand" style="font-family: none; font-weight: 900; color: black;">
+                    <h1>Product Offer</h1>
+                </a>
+
+            </div>
+        </nav>
+        <div class="row height d-flex p-3">
+        </div>
+        <table id="table_id" class="table table-dark table-hover" style="width: 100%;margin-top: 2rem;">
+            <thead>
+
+                <tr>
+                    <th>Sl No</th>
+                    <th>Products</th>
+                    <th>Discount</th>
+                    <th>Edit Discount</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {{#each products}}
+                    <th scope="row">{{inc @index}}</th>
+                    <td>{{this.product}}</td>
+                    <td id="{{this._id}}">{{this.prodOfferPer}}</td>
+                    <td><input type="number" style="width: 7rem;" id="{{this.product}}"></td>
+                    <td> <button onclick="productdiscount('{{this.product}}','{{this._id}}')" type="submit"
+                            class="btn btn-success">Save</button> </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () { $('#table_id').DataTable(); });
+</script>

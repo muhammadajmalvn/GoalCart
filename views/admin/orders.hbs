@@ -1,0 +1,211 @@
+<section id="main">
+    <div class="" style=" vh-100">
+
+        <a class="navbar-brand mt-4" style="font-family: none; font-weight: 900; color: black;">
+            <h1 class="text-center pt-5">Orders</h1>
+        </a>
+        <div class="d-flex justify-content-center">
+            <div class="row mb-3 mt-4">
+                <table id="table_id" class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>SL No</th>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Address</th>
+                            <th>Payment</th>
+                            <th>Quantity</th>
+                            <th>Current Status</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    {{#each orderItems}}
+                    <tbody>
+                        <tr>
+                            <td>{{inc @index}}</td>
+
+
+                            <td>
+                                {{#each products}}
+                                <img style="width:70px; height:70px;" src="{{this.image.[0]}}" alt="">
+                                <br><br>
+                                {{/each}}
+                            </td>
+
+
+                            <td class="align-middle fw-b">
+                                {{#each products}}
+                                {{this.product}}
+                                <br> <br>
+                                {{/each}}
+                            </td>
+
+                            <td class="align-middle fw-b">{{this.totalAmount}}</td>
+                            <td class="align-middle fw-b">{{this.date}}</td>
+                            <td class="align-middle fw-b">{{this.deliveryDetails.fullname}},
+                                {{this.deliveryDetails.address}}
+                            </td>
+                            <td class="align-middle fw-b">{{this.paymentMethod}}</td>
+                            <td class="align-middle fw-b">
+                                {{#each products}}
+                                {{this.quantity}}
+                                <br><br>
+                                {{/each}}
+                            </td>
+                            {{#if this.coupon}}
+                            <td class="order-data align-middle fw-b" id="{{this._id}}">
+                                {{this.status}}</td>
+                            <td class="align-middle fw-b" id="select">
+                                {{#ifCheck status 'delivered'}}
+                                <option value="delivered">Delivered</option>
+                                {{/ifCheck}}
+                                {{#ifCheck status 'cancelled'}}
+                                <option value="cancelled">Cancelled</option>
+                                {{/ifCheck}}
+                                {{#ifCheck status 'placed'}}
+                                <select class="form-control" id="{{this._id}}{{this.userId}}"
+                                    onchange="orderstatusChange('{{this._id}}','{{this.userId}}')" style="width: 90px;">
+                                    <option selected="true" disabled="disabled"
+                                        style="background-color: blue; color: white;">
+                                        {{this.status}}</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="canceled">Canceled</option>
+                                </select>
+                                {{/ifCheck}}
+                                {{#ifCheck status 'pending'}}
+                                <select class="form-control" id="{{this._id}}{{this.userId}}"
+                                    onchange="orderstatusChange('{{this._id}}','{{this.userId}}')" style="width: 90px;">
+                                    <option selected="true" disabled="disabled"
+                                        style="background-color: blue; color: white;">
+                                        {{this.status}}</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="placed">Placed</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="canceled">Canceled</option>
+                                </select>
+                                {{/ifCheck}}
+                                {{#ifCheck status 'shipped'}}
+                                <select class="form-control" id="{{this._id}}{{this.userId}}"
+                                    onchange="orderstatusChange('{{this._id}}','{{this.userId}}')" style="width: 90px;">
+                                    <option selected="true" disabled="disabled"
+                                        style="background-color: blue; color: white;">
+                                        {{this.status}}</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="canceled">Canceled</option>
+                                </select>
+                                {{/ifCheck}}
+                            </td>
+
+
+                            {{!-- {{#each products}}
+                            <td>
+                                <img style="width:70px; height:70px;" src="{{this.image.[0]}}" alt="">
+                                <br><br>
+                            </td>
+
+                            <td class="align-middle fw-b">
+                                {{this.product}}
+                            </td>
+                            <td class="align-middle fw-b">{{../totalAmount}}</td>
+                            <td class="align-middle fw-b">{{this.date}}</td>
+                            <td class="align-middle fw-b">{{../deliveryDetails.fullname}},
+                                {{../deliveryDetails.address}}
+                            </td>
+                            <td class="align-middle fw-b">{{this.paymentMethod}}</td>
+                            <td class="align-middle fw-b">
+                                {{this.quantity}}
+                            </td> --}}
+                            {{else}}
+                            <td class="order-data align-middle fw-b" id="{{this.item}}{{../_id}}">
+                                {{#each products}}
+                                {{this.status}}
+                                <br> <br>
+                                {{/each}}
+                            </td>
+                            <td class="align-middle fw-b" id="select">
+                                {{#each products}}
+
+                                {{#ifCheck this.status 'delivered'}}
+                                <option value="delivered">Delivered</option>
+                                {{/ifCheck}}
+                                {{#ifCheck this.status 'cancelled'}}
+                                <option value="cancelled">Cancelled</option>
+                                {{/ifCheck}}
+                                {{#ifCheck this.status 'placed'}}
+                                <select class="form-control" id="{{this.item}}{{../_id}}"
+                                    onchange="statusChange('{{this.item}}','{{../_id}}')" style="width: 90px;">
+                                    <option selected="true" disabled="disabled"
+                                        style="background-color: blue; color: white;">
+                                        {{this.status}}</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="canceled">Canceled</option>
+                                </select>
+                                {{/ifCheck}}
+                                {{#ifCheck this.status 'pending'}}
+                                <select class="form-control" id="{{this.item}}{{../_id}}"
+                                    onchange="statusChange('{{this.item}}','{{../_id}}')" style="width: 90px;">
+                                    <option selected="true" disabled="disabled"
+                                        style="background-color: blue; color: white;">
+                                        {{this.status}}</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="placed">Placed</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="canceled">Canceled</option>
+                                </select>
+                                {{/ifCheck}}
+                                {{#ifCheck this.status 'shipped'}}
+                                <select class="form-control" id="{{this.item}}{{../_id}}"
+                                    onchange="statusChange('{{this.item}}','{{../_id}}')" style="width: 90px;">
+                                    <option selected="true" disabled="disabled"
+                                        style="background-color: blue; color: white;">
+                                        {{this.status}}</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="canceled">Canceled</option>
+                                </select>
+                                {{/ifCheck}}
+                                <br>
+                                {{/each}}
+
+                            </td>
+                        </tr>
+                        {{/if}}
+                    </tbody>
+                    {{/each}}
+                </table>
+
+
+
+
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="...">
+                        <ul class="pagination pagination-sm">
+                            {{#each page}}
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link" style="border-radius: 10px; background:#009688"> <a
+                                        onclick="page({{this}})" style="color:white;">{{this}}</a></span>
+                            </li>
+                            {{/each}}
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="...">
+            <ul class="pagination pagination-sm">
+                {{#each pages}}
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="/admin/orders?&p={{this}}">{{this}}</a></li>
+                    {{/each}}
+    </div>
+
+</section>

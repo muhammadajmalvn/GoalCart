@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="col-12 btn-group" role="group" aria-label="Basic radio toggle button group"
+        style="margin-top:100px; width: 100%; justify-content: center;">
+
+        <div class="col-md-8">
+            {{#each category}}
+            <a class="btn m-1" style="background-color:black;color:white;border-radius:10p;"
+                href="/productsearch?search={{this.category}}">{{this.category}}</a>
+            {{/each}}
+        </div>
+
+        {{!-- <div class="col-md-4">
+            <form style="" class="d-flex" action="/products?search/" method="get">
+                <input style=" border-radius: 10px;" class="form-control me-2 m-1" type="search" placeholder="Search"
+                    aria-label="Search" name="search">
+                <button type="submit"
+                    style="border:0; color:royalblue; background-color: transparent; font-size: 24px;"><i
+                        class='fa fa-search'></i></button>
+            </form>
+        </div> --}}
+    </div>
+</div>
+
+<section>
+    <div class="position-fixed w-25 d-none" id="success"
+        style="left:530px; top: 100px; z-index: 1000; background-color:black; border-radius:10px;">
+        <p id="success-text" class="text-center mt-3" style="color:white;">Added to Cart</p>
+    </div>
+    <div class="position-fixed w-25 d-none" id="wishSuccess"
+        style="left:530px; top: 100px; z-index: 1000; background-color:black; border-radius:10px;">
+        <p id="success-text" class="text-center mt-3" style="color:white;">Added to Cart</p>
+    </div>
+</section>
+
+
+<div class="container mt-5">
+    <div class="tab-content">
+        <div id="tab-1" class="tab-pane fade show p-0 active">
+            <div class="row g-4">
+                {{#if response}}
+                {{#each response}}
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="product-item">
+                        <div class="card">
+                            <div class="position-relative bg-light overflow-hidden">
+                                <img class="img-fluid w-100" src="{{this.image.[0]}}" alt="">
+                                {{#if this.currentOffer}}
+                                <div
+                                    class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                    {{this.currentOffer}}% off</div>
+                                {{else}}
+                                <div
+                                    class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                    0% off</div>
+                                {{/if}}
+                            </div>
+                            <div class="text-center p-4">
+                                <a class="d-block h5 mb-2" href="/product-details/{{this._id}}"
+                                    style="color: black;">{{this.product}}</a>
+                                <span class="me-1" style="color:black;"><strong>₹{{this.offerprice}}</strong></span>
+                                <span class="text-body text-decoration-line-through">₹{{this.actualprice}}</span>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="w-50 text-center border-end py-2">
+                                    <a class="text-body" href="/product-details/{{this._id}}"><i class="fa fa-eye me-2"
+                                            style="color:black;"></i>View
+                                        detail</a>
+                                </small>
+                                {{#if this.stock}}
+                                {{#if ../user}}
+                                <small class="w-50 text-center py-2">
+                                    <a class="text-body" type="button" href="" onclick="addtocart('{{this._id}}')"><i
+                                            class="fa fa-shopping-bag me-2" style="color:black;"></i>Add to Cart
+                                    </a>
+                                </small>
+                                {{else}}
+                                <small class="w-50 text-center py-2">
+                                    <a class="text-body" type="button" data-bs-toggle="modal" data-bs-target="#login"
+                                        href=""><i class="fa fa-shopping-bag me-2" style="color:royalblue;"></i>Add to
+                                        cart</a>
+                                </small>
+                                {{/if}}
+                                {{else}}
+                                <small class="w-50 text-center py-2">
+                                    <a class="text-body"><i class=" fa fa-shopping-bag me-2"
+                                            style="color:royalblue;"></i>Out
+                                        of Stock</a>
+                                </small>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                {{else}}
+                <h1 class="text-center" style="color:red;"><strong>No items Found......!</strong></h1>
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+</div>
+<!-- JavaScript Libraries -->
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+
+
+<style>
+
+</style>

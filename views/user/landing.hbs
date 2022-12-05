@@ -1,0 +1,190 @@
+<div class="row align-items-center mb-5 p-0"
+  style="background-color: #FFFF; height: max-content; border-radius: 0px 0px 70px 70px;">
+  {{!-- <div class="col ms-5 mt-5 mb-5" style="font-family: none;">
+    <h3 style="font-weight:bold; font-size: 60px; color:#1867C2;">Nothing</h3>
+    <h1 style="font-weight:bold; font-size: 70px; color:#1867C2;">But Sports</h1>
+    <a href="/products"><button type="button" class="btn btn-primary mt-4">Shop
+        Now</button></a> --}}
+    {{!-- <div>
+      <img src="https://cdn.footy.com/blog/2022/January/best-football-boots-2022/blogheader800x4202.jpg" alt=""
+        style="margin-top: 1rem; width: 100%;">
+    </div> --}}
+
+    {{#each banner}}
+    <div id="carouselExampleInterval" class="carousel slide carousel-fade  w-100" data-bs-ride="carousel"
+      style="margin-top: 3rem;">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+          <img src="{{this.image.[0]}}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="1000">
+          <img src="{{this.image.[1]}}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{{this.image.[2]}}" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    {{/each}}
+    <div class="col-md-7 mt-5 mb-5">
+      <img class="img-fluid" src="" alt="" style="width:50rem;" />
+    </div>
+  </div>
+
+  <div class="category mt-5">
+    <div class="text-center">
+      <h2 style="font-weight:bold; font-size: 45px; color:#1867C2;">What are you looking for ?</h2>
+    </div>
+  </div>
+
+  <div class="categoryList" style="font-family: none;text-align: center;">
+    <a href="#" style="text-decoration:none;">
+      <div class="container p-4 my-5 border text-center"
+        style="width:100%; background-color:#24747E;font-weight:bold; font-size: 60px; color:white;">Footballs
+
+      </div>
+    </a>
+    <a href="#" style="text-decoration:none;">
+      <div class="container p-4 my-5 border text-center"
+        style="width:100%; background-color:#828282;font-weight:bold; font-size: 60px; color:white;">Jerseys
+      </div>
+    </a>
+    <a href="#" style="text-decoration:none;">
+      <div class="container p-4 my-5 border text-center"
+        style="width:100%; background-color:#C82657;font-weight:bold; font-size: 60px; color:white;">Accessories
+
+      </div>
+    </a>
+  </div>
+
+  <div class="container mb-5">
+    <div class="text-center">
+      <h2 style="font-weight:bold; font-size: 45px; color:#1867C2;">Popular
+        Products</h2>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="tab-content">
+      <div id="tab-1" class="tab-pane fade show p-0 active">
+        <div class="row g-4">
+          {{#if Products}}
+          {{#each Products}}
+          <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="product-item">
+              <div class="card">
+                <div class="position-relative bg-light overflow-hidden">
+                  <img class="img-fluid w-100" src="{{this.image.[0]}}" alt="">
+                  {{#if this.currentOffer}}
+                  <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                    {{this.currentOffer}}% off</div>
+                  {{else}}
+                  <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                    0% off</div>
+                  {{/if}}
+                </div>
+                <div class="text-center p-4">
+                  <a class="d-block h5 mb-2" href="/product-details/{{this._id}}"
+                    style="color: black;">{{this.product}}</a>
+                  {{#if ../user}}
+                  {{#if this.wishlist}}
+                  <i class="fa-solid fa-heart float-end" id="heart" style="font-size: xx-large;"
+                    onclick="addToWishlist('{{this._id}}')"></i>
+                  {{else}}
+                  <i class="fa-solid fa-heart float-end" style="font-size: xx-large; "
+                    onclick="addToWishlist('{{this._id}}')"></i>
+                  {{/if}}
+                  {{else}}
+                  <i class="fa-solid fa-heart float-end" style="font-size: xx-large;"><a href="/login"></a></i>
+                  {{/if}}
+                  {{!-- {{#if this.wishlist}}
+                  <span class="card-action">
+                    <a class="btn btn-xs btn-circle btn-white-primary" href="addtoWishlist('{{this._id}}')" id="heart"
+                      data-toggle="button">
+                      ❤️
+                    </a>
+                  </span>
+                  {{else}}
+                  <span class="card-action">
+                    <a class="btn btn-xs btn-circle btn-white-primary" href="" addtoWishlist('{{this._id}}')"
+                      data-toggle="button">
+                      <i class="fe fe-heart"></i>
+                    </a>
+                  </span>
+                  {{/if}} --}}
+
+
+                  <span class="me-1" style="color:black;"><strong>₹{{this.offerprice}}</strong></span>
+                  <span class="text-body text-decoration-line-through">₹{{this.actualprice}}</span>
+
+                </div>
+                <div class="d-flex border-top">
+
+                  {{#if this.stock}}
+                  {{#if ../user}}
+                  <small class="w-50 text-center border-end py-2">
+                    <a class="text-body" href="/product-details/{{this._id}}"><i class="fa fa-eye me-2"
+                        style="color:black;"></i>View
+                      detail</a>
+                  </small>
+                  <small class="w-50 text-center py-2">
+                    <a class="text-body" type="button" href="" onclick="addtocart('{{this._id}}')"><i
+                        class="fa fa-shopping-bag me-2" style="color:black;"></i>Add to Cart
+                    </a>
+                  </small>
+                  {{else}}
+                  <small class="w-50 text-center border-end py-2">
+                    <a class="text-body" href="/login"><i class="fa fa-eye me-2" style="color:black;"></i>View
+                      detail</a>
+                  </small>
+                  <small class="w-50 text-center py-2">
+                    <a class="text-body" type="button" data-bs-toggle="modal" data-bs-target="#login" href="/login"><i
+                        class="fa fa-shopping-bag me-2" style="color:royalblue;"></i>Add to
+                      cart</a>
+                  </small>
+                  {{/if}}
+                  {{else}}
+                  <small class="w-50 text-center py-2">
+                    <a class="text-body"><i class=" fa fa-shopping-bag me-2" style="color:royalblue;"></i>Out
+                      of Stock</a>
+                  </small>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+          {{else}}
+          {{/if}}
+
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+  </div>
+  <div class="container">
+    <hr style="font-weight: bold; height: 4px; background-color: black;" />
+  </div>
+  <div class="d-flex justify-content-center mb-5 p-0">
+    <a href="/products"><button type="button" class="btn btn-primary mt-4">Explore
+        all Items</button></a>
+  </div>
+</div>
+<style>
+  #heart {
+    color: red;
+    animation: move 3s infinite ease-in-out;
+  }
+</style>

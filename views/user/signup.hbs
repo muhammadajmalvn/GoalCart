@@ -1,0 +1,80 @@
+<section class="" style="background-color: #ffff;width:99%" <div class="container py-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col col-xl-12">
+      <div class="card" style="border-radius: 1rem;">
+        <div class="row g-0">
+          <div class="col-md-6 col-lg-6 d-none d-md-block">
+            <img
+              src="https://images.unsplash.com/photo-1511426463457-0571e247d816?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+              alt="login form" class="img-fluid" style="height: 42rem;width:100% ;" />
+          </div>
+          <div class="col-md-6 col-lg-6 d-flex ">
+            <div class="card-body lg-5 text-black">
+
+              <div class="container mx-2 ">
+
+                <form onsubmit="return signupValidate()" action="/signup" method="post">
+                  <div class="d-flex align-items-center pb-1">
+
+                    <span class="h1 fw-bold mb-4"> <img src="/images/Screenshot from 2022-10-12 15-07-29.png" alt=""
+                        style="height: 3rem;width: 8rem;"></span>
+                  </div>
+
+                  <h5 class="fw-normal mb-4 " style="letter-spacing: 1px;"><b>Create a new account</b></h5>
+                    {{#if err}}
+                    <div>
+                    <p style="color: red;">{{err}}</p>
+                    </div>
+                    {{/if}}
+                  <div class="row mb-2">
+                    <div class="form-outline col-md-6">
+                      <label class="form-label" for="form2Example17" name="fname">First Name</label>
+                      <input type="text" id="fname" name="fname" class="form-control form-control-lg" required />
+
+                    </div>
+                    <div class="form-outline col-md-6">
+                      <label class="form-label" for="form2Example17" id="lname">Last Name</label>
+                      <input type="text" id="form2Example17" name="lname" class="form-control form-control-lg"
+                        required />
+                    </div>
+                  </div>
+                  <div class="email">
+                    <label class="form-label" for="form2Example17">Email address</label>
+                    <input type="email" id="email" name="email" class="form-control form-control-lg" required />
+
+                  </div>
+                  <div class="invalid-display ms-5">
+                  </div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form2Example27">Mobile Number</label>
+                    <input type="text" id="phonenumber" name="phonenumber" class="form-control form-control-lg"
+                      required />
+
+                  </div>
+                  <div class="invalid-display ms-5"></div>
+                  <div class="form-outline mb-1">
+                    <label class="password" for="form2Example27">Password</label>
+                    <input type="password" id="password-1" name="password" class="form-control form-control-lg"
+                      required />
+
+                  </div>
+                  <div class="invalid-display ms-5"></div>
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form2Example27">Referral Code</label>
+                    <input type="text" id="referral" class="form-control" name="referralCode" />
+                  </div>
+                  <div class="submitbutton col-md-6">
+                    <button class="btn btn-dark btn-lg btn-block" type="submit">Sign up</button>
+                    <p class="" style="color: #393f81;">Already have an account?
+                      <a href="/login" style="color: #393f81;">Login here</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

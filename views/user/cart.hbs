@@ -1,0 +1,640 @@
+{{#if cartCount}}
+<br>
+<br><br>
+<div class="container" style="display: flex;">
+  <div class="col-9">
+    <div class="container bg-white"
+      style="margin-top: 10px; border-radius: 10px; box-shadow: rgb(100 100 111 / 50%) 0px 7px 29px 0px;">
+
+      <body>
+
+        <main>
+          <div class="basket mt-5 ">
+            <div class="basket-module">
+              {{!-- <label for="promo-code">Enter a promotional code</label>
+              <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
+              <button class="promo-code-cta">Apply</button> --}}
+              <h2 class="fw-bold">Cart<h4>( {{cartCount}} items )</h4>
+              </h2>
+            </div>
+            <div class="basket-labels" style="font-size: 1rem;">
+              <ul>
+
+                <li class="item">Item</li>
+                <li class="price">Unit Price</li>
+                <li class="quantity">Quantity</li>
+                <li class="">Subtotal</li>
+
+
+              </ul>
+            </div>
+            {{#each products}}
+            <div class="basket-product">
+              <div class="item">
+                <div class="product-image">
+                  <img src="{{this.image.[0]}}" alt="Placholder Image 2">
+                </div>
+                <div class="product-details">
+                  <h3 style="font-weight: 600;">{{this.brand}}</h3>
+                  <h1 style="font-size:20px;"><strong>{{this.product}}</strong></h1>
+                </div>
+              </div>
+              <div class="price" style="font-size: 20px; font-weight: 600;">₹{{this.offerprice}}</div>
+              <div class="quantity" style=" font-size: 20px; font-weight: 800;">
+                <button class="cart-item-count"
+                  onclick="changeQuantity('{{this._id}}','{{this.item}}','{{../userId}}','{{this.product}}',-1)">-</button>
+                <div id="{{this.item}}" style="float:left ;">{{this.quantity}}</div>
+                <button class="cart-item-count"
+                  onclick="changeQuantity('{{this._id}}','{{this.item}}','{{../userId}}','{{this.product}}',1)"
+                  style="float: left;">+</button>
+              </div>
+
+              <div class="subtotal" style="font-size: 20px; font-weight: 600; margin-left: -3rem;">
+                <strong> ₹ <span id="{{this.product}}">{{this.subtotal}}</strong></span>
+              </div>
+              <div class="remove"><a href="/delete-cart-product/{{this.item}}?_method=DELETE" data-mdb-toggle="tooltip"
+                  title="Remove item">
+                  <button><i class="fa-solid fa-trash" style="font-size: 1.5rem;"></i></button></a>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </main>
+      </body>
+      <div class="ibox-content pb-3">
+
+
+        <a href="/products" class="checkout-cta btn btn-primary" style="width: 25%;"><b><i
+              class="fa fa-arrow-left"></i>Continue
+            to
+            shopping</b></a>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 mt-5 my-auto">
+    <div class="summary ms-5 mt-5" style=" box-shadow: rgb(100 100 111 / 20%) 0px 0px 9px 0px; margin-top: 50px">
+      <div class="summary-total-items" style="font-size: 1.5rem;"><span class="total-items"></span><strong>Items in
+          Bag</strong> </div>
+      {{#each products}}
+      <div class="summary-subtotal">
+        <div class="subtotal-title w-100" style="font-weight:bold ;">{{this.product}} <span>x{{this.quantity}} No</span>
+          {{!-- <div>
+            ₹{{this.product.offerprice}}
+          </div> --}}
+        </div>
+        <div class="summary-promo hide">
+          <div class="promo-title">Promotion</div>
+          <div class="promo-value final-value" id="basket-promo"></div>
+        </div>
+      </div>
+      {{/each}}
+      {{!-- <div class="summary-delivery">
+        <select name="delivery-collection" class="summary-delivery-selection">
+          <option value="0" selected="selected">Select Collection or Delivery</option>
+          <option value="collection">Collection</option>
+          <option value="first-class">Royal Mail 1st Class</option>
+          <option value="second-class">Royal Mail 2nd Class</option>
+          <option value="signed-for">Royal Mail Special Delivery</option>
+        </select>
+      </div> --}}
+      <div class="summary-total">
+        <div class="total-title">Total</div>
+        <div class="total-value final-value" id="basket-total">
+          <strong>₹ <span id="total">{{totalAmount}}</span></strong>
+        </div>
+      </div>
+
+      <div class="summary-checkout">
+        <a href="/place-orders" class="checkout-cta btn btn-primary"><b>Proceed to Checkout <i
+              class="fa fa-arrow-right"></i></b></a>
+        {{else}}
+        <div class="container-fluid  mt-100">
+          <div class="row">
+
+            <div class="col-md-12">
+
+              <div class="card">
+
+                <div class="card-body cart">
+                  <div class="col-sm-12 empty-cart-cls text-center">
+                    <img src="	https://codescandy.com/coach/rtl/assets/images/bag.svg" class="img-fluid "
+                      style="height: 50%;width:30% ">
+                    <h2><strong>Your Cart is Empty</strong></h2>
+
+                    <a href="/products" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Continue
+                      shopping</a>
+
+
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+        </div>
+        {{/if}}
+        {{!-- <button class="checkout-cta">Go to Secure Checkout</button> --}}
+      </div>
+
+    </div>
+  </div>
+</div>
+<br> <br>
+<style>
+  body {
+    background-color: #eee;
+    font-family: 'Calibri', sans-serif !important;
+  }
+
+  .mt-100 {
+    margin-top: 100px;
+
+  }
+
+
+  .card {
+    margin-bottom: 30px;
+    border: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    letter-spacing: .5px;
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+    box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+  }
+
+  .card .card-header {
+    background-color: #fff;
+    border-bottom: none;
+    padding: 24px;
+    border-bottom: 1px solid #f6f7fb;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  }
+
+
+
+  .card .card-body {
+    padding: 30px;
+    background-color: transparent;
+  }
+
+  .btn-primary,
+  .btn-primary.disabled,
+  .btn-primary:disabled {
+    background-color: #4466f2 !important;
+    border-color: #4466f2 !important;
+  }
+
+  html,
+  html a {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  }
+
+  body {
+    background-color: #fff;
+    color: #1867C2;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 auto;
+  }
+
+  a {
+    border: 0 none;
+    outline: 0;
+    text-decoration: none;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0.75rem 0 0;
+  }
+
+  input,
+  button {
+    border: 0 none;
+    outline: 0 none;
+  }
+
+  button {
+    background-color: #1867C2;
+    color: #fff;
+  }
+
+  button:hover,
+  button:focus {
+    background-color: #555;
+  }
+
+  img,
+  .basket-module,
+  .basket-labels,
+  .basket-product {
+    width: 70%;
+  }
+
+  input,
+  button,
+  .basket,
+  .basket-module,
+  .basket-labels,
+  .item,
+  .price,
+  .quantity,
+  .subtotal,
+  .basket-product,
+  .product-image,
+  .product-details {
+    float: left;
+  }
+
+  .price:before,
+  .subtotal:before,
+  .subtotal-value:before,
+  .total-value:before,
+  .promo-value:before {
+    +
+  }
+
+  .hide {
+    display: none;
+  }
+
+  main {
+    clear: both;
+    font-size: 0.75rem;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 1rem 0;
+    width: 140%;
+  }
+
+  .basket,
+  aside {
+    padding: 0 1rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .basket {
+    width: 98%;
+  }
+
+  .basket-module {
+    color: #1867C2;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.3125rem;
+  }
+
+  .promo-code-field {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-transform: uppercase;
+    transition: all 0.2s linear;
+    width: 48%;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  }
+
+  .promo-code-field:hover,
+  .promo-code-field:focus {
+    border: 1px solid #1867C2;
+  }
+
+  .promo-code-cta {
+    border-radius: 4px;
+    font-size: 0.625rem;
+    margin-left: 0.625rem;
+    padding: 0.6875rem 1.25rem 0.625rem;
+  }
+
+  .basket-labels {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-top: 1.625rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    color: #1867C2;
+    display: inline-block;
+    font-size: 1.1rem;
+  }
+
+  li.price:before,
+  li.subtotal:before {
+    content: '';
+  }
+
+  .item {
+    width: 55%;
+  }
+
+  .price,
+  .quantity,
+  .subtotal {
+    width: 15%;
+  }
+
+  .subtotal {
+    text-align: right;
+  }
+
+  .remove {
+    bottom: 1.125rem;
+    float: right;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    width: 45%;
+  }
+
+  .remove button {
+    background-color: transparent;
+    color: rgb(255, 0, 0);
+    float: none;
+    text-decoration: underline;
+    text-transform: uppercase;
+  }
+
+  .item-heading {
+    padding-left: 4.375rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .basket-product {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    position: relative;
+  }
+
+  .product-image {
+    width: 35%;
+  }
+
+  .product-details {
+    width: 65%;
+  }
+
+  .product-frame {
+    border: 1px solid #aaa;
+  }
+
+  .product-details {
+    padding: 0 1.5rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .quantity-field {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #1867C2;
+    border-radius: 4px;
+    font-size: 0.625rem;
+    padding: 2px;
+    width: 3.75rem;
+  }
+
+  aside {
+    float: right;
+    position: relative;
+    width: 30%;
+  }
+
+  .summary {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 250px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .summary-total-items {
+    color: #1867C2;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .summary-subtotal,
+  .summary-total {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    clear: both;
+    margin: 1rem 0;
+    overflow: hidden;
+    padding: 0.5rem 0;
+  }
+
+  .subtotal-title,
+  .subtotal-value,
+  .total-title,
+  .total-value,
+  .promo-title,
+  .promo-value {
+    color: #111;
+    float: left;
+    width: 50%;
+  }
+
+  .summary-promo {
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+  }
+
+  .promo-title {
+    float: left;
+    width: 70%;
+  }
+
+  .promo-value {
+    color: #8B0000;
+    float: left;
+    text-align: right;
+    width: 30%;
+  }
+
+  .summary-delivery {
+    padding-bottom: 3rem;
+  }
+
+  .subtotal-value,
+  .total-value {
+    text-align: right;
+  }
+
+  .total-title {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .summary-checkout {
+    display: block;
+  }
+
+  .checkout-cta {
+    display: block;
+    float: none;
+    font-size: 0.75rem;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0.625rem 0;
+    width: 100%;
+  }
+
+  .summary-delivery-selection {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    display: block;
+    font-size: 0.625rem;
+    height: 34px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 640px) {
+
+    aside,
+    .basket,
+    .summary,
+    .item,
+    .remove {
+      width: 100%;
+    }
+
+    .basket-labels {
+      display: none;
+    }
+
+    .basket-module {
+      margin-bottom: 1rem;
+    }
+
+    .item {
+      margin-bottom: 1rem;
+    }
+
+    .product-image {
+      width: 40%;
+    }
+
+    .product-details {
+      width: 60%;
+    }
+
+    .price,
+    .subtotal {
+      width: 33%;
+    }
+
+    .quantity {
+      text-align: center;
+      width: 34%;
+    }
+
+    .quantity-field {
+      float: none;
+    }
+
+    .remove {
+      bottom: 0;
+      text-align: left;
+      margin-top: 0.75rem;
+      position: relative;
+    }
+
+    .remove button {
+      padding: 0;
+    }
+
+    .summary {
+      margin-top: 1.25rem;
+      position: relative;
+    }
+  }
+
+  @media screen and (min-width: 641px) and (max-width: 960px) {
+    aside {
+      padding: 0 1rem 0 0;
+    }
+
+    .summary {
+      width: 28%;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    main {
+      width: 100%;
+    }
+
+    .product-details {
+      padding: 0 1rem;
+    }
+  }
+</style>
+
+
+<script>
+  function changeQuantity(cartId, prodId, userId, prod, count) {
+    console.log(cartId, prodId, userId, count, prod);
+    let quantity = parseInt(document.getElementById(prodId).innerHTML)
+    count = parseInt(count)
+    $.ajax({
+      url: '/change-product-quantity',
+      data: {
+        user: userId,
+        cart: cartId,
+        product: prodId,
+        count: count,
+        quantity: quantity
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.removeProduct) {
+          alert("Product Removed From the Cart")
+          location.reload()
+        }
+        else if (response.status == false) {
+          alert("Quantity Exceeds Stock Limit")
+          location.reload()
+        }
+        else {
+          document.getElementById(prodId).innerHTML = quantity + count
+          document.getElementById('total').innerHTML = response.total
+          document.getElementById(prod).innerHTML = response.subtotal
+        }
+      }
+    })
+  }
+</script>

@@ -1,0 +1,125 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark  shadow text-light">
+    <div class="container-fluid">
+        <h3>GoalCart</h3>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="mx-auto">
+                <ul class="navbar-nav" style="font-weight:700;">
+                    {{#if user}}
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" aria-current="page" href="/home"
+                            style=" color: font-family:auto; font-size: larger;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" href="/products"
+                            style=" font-family:auto; font-size: larger;">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" href="/orders"
+                            style="font-family:auto; font-size: larger;">Orders</a>
+                    </li>
+                    <li class="nav-item" id="searchbar">
+                        <form style="" class="d-flex " action="/productsearch?search" method="get">
+                            <input style=" border-radius: 10px;" class="form-control me-2 " type="search"
+                                placeholder="Search" aria-label="Search" name="search">
+                            <button type="submit"
+                                style="border:0; color:white; background-color: transparent; font-size: 24px;"><i
+                                    class='fa fa-search'></i></button>
+                        </form>
+                    </li>
+                    {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" aria-current="page" href="/"
+                            style="font-family:auto; font-size: larger;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" href="/"
+                            style="font-family:auto; font-size: larger;">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" href="/login"
+                            style="font-family:auto; font-size: larger; border:0; ">Orders</a>
+                    </li>
+                    <li class="nav-item" id="searchbar">
+                        <form style="" class="d-flex" action="/" method="get">
+                            <input style=" border-radius: 10px;" class="form-control me-2 " type="search"
+                                placeholder="Search" aria-label="Search" name="search">
+                            <button type="submit"
+                                style="border:0; color:white; background-color: transparent; font-size: 24px;"><i
+                                    class='fa fa-search'></i></button>
+                        </form>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+            <div class="">
+                <ul class="navbar-nav me-3" style="font-weight:700;">
+                    {{#if user}}
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" aria-current="page" href="/profile"
+                            style=" font-family:auto; font-size: larger;"><i class="fa-solid fa-user"></i>
+                            {{user.fname}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4 position-relative" href="/cart"
+                            style="font-family:auto; font-size: larger;">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="position-absolute translate-middle badge rounded-pill bg-danger"
+                                style="font-size:10px;" id="cart-count">
+                                {{cartCount}}
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4 position-relative" href="/wishlist"
+                            style=" font-family:auto; font-size: larger;">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" href="/logout" style=" font-family:auto; font-size: larger;"><i
+                                class="fa-solid fa-right-from-bracket"></i></a>
+                    </li>
+                    {{else}}
+
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" aria-current="page" href="/login"
+                            style=" font-family:auto; font-size: larger;"><i class="fa-solid fa-user"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4 position-relative" href="/login"
+                            style="font-family:auto; font-size: larger;">
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4 position-relative" href="/login"
+                            style=" font-family:auto; font-size: larger;">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active pe-4" href="/login" style=" font-family:auto; font-size: larger;"><i
+                                class="fa-solid fa-right-from-bracket"></i></a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    @media(max-width :991px) {
+
+        #searchbar {
+            width: max-content;
+        }
+
+
+    }
+</style>
