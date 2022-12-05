@@ -3,8 +3,8 @@ const state = {
   db: null,
 };
 module.exports.connect = function (done) {
-  const url = "mongodb://localhost:27017";
-  const dbname = "goalcart";
+  const url = process.env.URL;
+  const dbname = "GoalCart";
 
   mongoClient.connect(url, (err, data) => {
     if (err) return done(err);
