@@ -15,7 +15,7 @@ exports.usersView = (req, res) => {
   }
 
   exports.changeUserStatus =  function (req, res) {
-    adminHelpers.changeStatus(req.params.id).then((response) => {
+    adminHelpers.changeUserStatus(req.params.id).then((response) => {
       res.redirect("/admin/users");
     });
   }

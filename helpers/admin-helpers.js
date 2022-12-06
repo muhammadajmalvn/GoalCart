@@ -116,7 +116,7 @@ module.exports = {
   },
 
   // USER BLOCKING AND UNBLOCKING
-  changeStatus: (userId) => {
+  changeUserStatus: (userId) => {
     return new Promise(async (resolve, reject) => {
       await db
         .get()

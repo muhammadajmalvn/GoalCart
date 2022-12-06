@@ -234,13 +234,14 @@ function statusChange(proId, orderId) {
                 status == "delivered" ||
                 status == "canceled"
               ) {
-                location.reload();
-              }
+                  location.reload(); 
+              }             
             }
           },
         });
       } else {
         location.reload();
+        
       }
     }
   );
@@ -280,13 +281,13 @@ function orderstatusChange(orderId,userId) {
                 status == "placed" ||
                 status == "shipped" ||
                 status == "delivered" ||
-                status == "canceled"
-              ) {
+                status == "canceled") 
+                {
                 location.reload();
               }
             }
-          },
-        });
+          }
+        })
       } else {
         location.reload();
       }

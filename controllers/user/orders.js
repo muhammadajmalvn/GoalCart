@@ -1,4 +1,5 @@
 const userHelpers = require("../../helpers/user-helpers");
+const productHelpers = require("../../helpers/product-helpers");
 
 exports.getOrders = async (req, res) => {
   let orders = await userHelpers.getUserOrders(req.session.user._id);

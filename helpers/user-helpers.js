@@ -5,6 +5,7 @@ const objectId = require("mongodb").ObjectId;
 const ObjectId = require("mongodb").ObjectId;
 require('dotenv').config()
 const Razorpay = require("razorpay");
+const { response } = require("../app");
 
 const instance = new Razorpay({
   key_id: 'rzp_test_F6WOMA8GfzTV9U',
@@ -72,7 +73,7 @@ module.exports = {
 
             const obj1 = {
               orderId: new ObjectId(),
-              date: new Date(),
+              date: new Date().toDateString(),
               mode: "Credit",
               type: "Refferal signup Offer",
               amount: 100,
@@ -631,7 +632,7 @@ module.exports = {
           _id: objectId(orderId)
         },
         {
-          $set: { status: 'placed' },
+          $set: { status: 'placed'}
         }
       ).then(() => {
         resolve()
@@ -1176,7 +1177,7 @@ module.exports = {
       resolve(response)
       const obj3 = {
         orderId: new ObjectId(),
-        date: new Date(),
+        date: new Date().toDateString(),
         mode: "Credit",
         type: "Return",
         amount: product.offerprice,
@@ -1197,7 +1198,7 @@ module.exports = {
       resolve(response)
       const obj3 = {
         orderId: new ObjectId(),
-        date: new Date(),
+        date: new Date().toDateString(),
         mode: "Credit",
         type: "Return",
         amount: totalAmount,

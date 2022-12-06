@@ -9,13 +9,13 @@ module.exports = {
   addProduct: (product, urls, callback) => {
     return new Promise(async (resolve, reject) => {
       product.date = new Date()
-      product.actualprice = parseInt(product.actualPrice)
-      product.offerprice = parseInt(product.actualPrice)
+      product.actualprice = parseInt(product.actualprice)
+      product.offerprice = parseInt(product.actualprice)
       let checkOffer = await db.get().collection(collection.CATEGORY_COLLECTION).findOne({ category: product.category })
 
       if (checkOffer.categoryOfferPer > 0) {
-        let discount = product.actualPrice * checkOffer.categoryOfferPer / 100
-        product.offerprice = parseInt(product.actualPrice - discount)
+        let discount = product.actualprice * checkOffer.categoryOfferPer / 100
+        product.offerprice = parseInt(product.actualprice - discount)
       }
       product.stock = parseInt(product.stock)
       product.description = product.description
@@ -111,19 +111,19 @@ module.exports = {
         uploadImg[3] = image4
       }
       productDetails.stock = parseInt(productDetails.stock)
-      productDetails.actualPrice = parseInt(productDetails.actualPrice)
+      productDetails.actualprice = parseInt(productDetails.actualprice)
       productDetails.offerprice = parseInt(productDetails.actualprice)
       let category = await db.get().collection(collection.CATEGORY_COLLECTION).findOne({ category: productDetails.category })
       let prod = await db.get().collection(collection.PRODUCT_COLLECTION).findOne({ product: productDetails.product })
       if (prod.prodOfferPer || category.categoryOfferPer) {
         if (prod.prodOfferPer > category.categoryOfferPer) {
           offerPer = prod.prodOfferPer
-          discount = productDetails.actualPrice * offerPer / 100
+          discount = productDetails.actualprice * offerPer / 100
         } else {
           offerPer = category.categoryOfferPer
-          discount = productDetails.actualPrice * offerPer / 100
+          discount = productDetails.actualprice * offerPer / 100
         }
-        productDetails.offerprice = productDetails.actualPrice - discount
+        productDetails.offerprice = productDetails.actualprice - discount
         productDetails.offerprice = parseInt(Math.ceil(productDetails.offerprice))
       }
       db.get()
@@ -135,7 +135,7 @@ module.exports = {
               product: productDetails.product,
               brand: productDetails.brand,
               stock: productDetails.stock,
-              actualprice: productDetails.actualPrice,
+              actualprice: productDetails.actualprice,
               offerprice: productDetails.offerprice,
               category: productDetails.category,
               description: productDetails.description,
