@@ -4,12 +4,11 @@ const bcrypt = require("bcrypt");
 const objectId = require("mongodb").ObjectId;
 const ObjectId = require("mongodb").ObjectId;
 require('dotenv').config()
-
 const Razorpay = require("razorpay");
-const { response } = require("../app");
+
 const instance = new Razorpay({
-  key_id: process.env.KEY_ID,
-  key_secret: process.env.KEY_SECRET,
+  key_id: 'rzp_test_F6WOMA8GfzTV9U',
+  key_secret: "0tmFuv9WVV3mUIi6nRlhVVkk",
 });
 module.exports = {
 
@@ -612,7 +611,7 @@ module.exports = {
   verifyPayment: (details) => {
     return new Promise((resolve, reject) => {
       const crypto = require('crypto');
-      var hmac = crypto.createHmac('sha256',process.env.KEY_SECRET)
+      var hmac = crypto.createHmac('sha256',"0tmFuv9WVV3mUIi6nRlhVVkk")
       hmac.update(details['payment[razorpay_order_id]'] + '|' + details['payment[razorpay_payment_id]'])
       hmac = hmac.digest('hex')
 

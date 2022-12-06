@@ -6,8 +6,6 @@ function signupValidate() {
   const pass1 = document.getElementById("password-1");
   const pass2 = document.getElementById("password-2");
   const error = document.getElementsByClassName("invalid-display");
-  require('dotenv').config()
-
   // First name and last name validation
 
   //   if (
@@ -675,7 +673,7 @@ $("#checkout-form").submit((e) => {
 })
 function razorpayPayment(order) {
   var options = {
-    "key": process.env.KEY_ID, // Enter the Key ID generated from the Dashboard
+    "key": "rzp_test_F6WOMA8GfzTV9U", // Enter the Key ID generated from the Dashboard
     "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
     "name": "Goal Cart",

@@ -245,6 +245,7 @@ module.exports = {
         }
       ]).toArray()
       data.codTotal = codTotal?.[0]?.totalAmount
+      
       let onlineTotal = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
         {
           $match: {
@@ -264,6 +265,8 @@ module.exports = {
         }
       ]).toArray()
       data.onlineTotal = onlineTotal?.[0]?.totalAmount
+      console.log(data.onlineTotal,'111111111111111111111111111111111111111111');
+
       let totalAmount = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
         {
           $match: {
@@ -282,6 +285,7 @@ module.exports = {
         }
       ]).toArray()
       data.totalAmount = totalAmount?.[0]?.totalAmount
+      console.log(data,'dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
       resolve(data)
     })
   },
