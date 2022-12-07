@@ -11,21 +11,15 @@
   <div class="row">
     <div class="col-2">
 
-      {{!-- <div class="col-md-4 w-100 px-0 lens" id="img-container" style="margin-left:6rem;">
-        <img id="image" style="width:300px;" src="/product-images/{{response._id}}/{{response._id}}_0.jpg"
-          class="img-fluid mb-3" />
-      </div> --}}
-      <div class="col-md-4  px-0 lens" id="img-container" style="margin-left:6rem; width:65%">
+      {{!-- <div class="col-md-4  px-0 lens" id="img-container" style="margin-left:6rem; width:65%">
         <img class="img-fluid mb-3" src="{{response.image.[0]}}" alt="" width="50%" id="ProductImg" />
 
-      </div>
-      {{!-- <div class="wrapper">
-        <div style="margin-right: 50%;" class="block" ,min-height: "100vh;>
-          <img
-            id=" main-image" src="/product-images/{{response._id}}/{{response._id}}_0.jpg" alt="Image To Zoom"
-          class="block__pic" data-title="" data-help="" />
-      </div>
-    </div> --}}
+      </div> --}}
+ 
+ <div class="col-md-12 px-0 lens mt-5" id="img-container" style="width:100%">
+                  <img class="block__pic img-fluid" src="{{response.image.[0]}}" alt="" id="ProductImg" />
+                </div>
+
     <div class="small-img-row">
       <div class="small-img-col">
         <img src="{{response.image.[0]}}" alt="" width="80%" class="small-img" />
@@ -182,6 +176,12 @@
       }; SmallImg[3].onclick = function () {
         ProductImg.src = SmallImg[3].src;
       };
+
+      $(document).ready(function () {
+    $(".block__pic").imagezoomsl({
+        zoomrange: [2, 2]
+    });
+});
 </script>
 
 <style>
