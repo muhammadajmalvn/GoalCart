@@ -1007,8 +1007,8 @@ module.exports = {
         },
         {
           $set: {
-            fname: newdata.fname,
-            lname: newdata.lname,
+            firstName: newdata.firstName,
+            lastName: newdata.lastName,
             email: newdata.email,
             phonenumber: newdata.phonenumber
           }

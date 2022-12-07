@@ -8,7 +8,6 @@ exports.viewPassword = async (req, res) => {
   exports.changePassword = (req, res) => {
     let userId = req.session.user._id
     userHelpers.changePassword(userId, req.body).then((response) => {
-      req.session.user = null
       res.redirect('/login')
     })
   }
